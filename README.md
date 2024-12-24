@@ -1,7 +1,8 @@
-# tp-scaffold
+# The Last of C
 
-Esta es una plantilla de proyecto diseñada para generar un TP de Sistemas
-Operativos de la UTN FRBA.
+Trabajo práctico desarrollado para la materia Sistemas Operativos - UTN FRBA
+
+**Grupo:** Bit Wizards
 
 ## Dependencias
 
