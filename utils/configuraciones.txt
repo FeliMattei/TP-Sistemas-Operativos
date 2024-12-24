@@ -1,0 +1,68 @@
+git clone https://github.com/sisoputnfrba/so-commons-library
+cd so-commons-library
+make debug
+make install
+
+> mkdir mount_dir && cd mount_dir && mkdir files
+
+-------------------------------------------------------
+
+> IPS:
+
+./configure.sh IP_CPU 192.168.1. && IP_MEMORIA 192.168.1. && IP_FILESYSTEM 192.168.1.
+
+-------------------------------------------------------
+
+> Planificacion
+
+./kernel PLANI_PROC 32
+
+./configure.sh ALGORITMO_PLANIFICACION FIFO && ./configure.sh QUANTUM 875 && ./configure.sh TAM_MEMORIA 1024 && ./configure.sh RETARDO_RESPUESTA 500 && ./configure.sh ESQUEMA FIJAS && ./configure.sh ALGORITMO_BUSQUEDA FIRST && ./configure.sh PARTICIONES [32,32,32,32,32,32,32,32] && ./configure.sh BLOCK_SIZE 16 && ./configure.sh BLOCK_COUNT 1024 && ./configure.sh RETARDO_ACCESO_BLOQUE 2500
+
+./configure.sh ALGORITMO_PLANIFICACION PRIORIDADES
+./configure.sh ALGORITMO_PLANIFICACION CMN
+
+-------------------------------------------------------
+
+> Race condition
+
+./kernel RECURSOS_MUTEX_PROC 32
+
+./configure.sh ALGORITMO_PLANIFICACION CMN && ./configure.sh QUANTUM 750 && ./configure.sh TAM_MEMORIA 1024 && ./configure.sh RETARDO_RESPUESTA 200 && ./configure.sh ESQUEMA FIJAS && ./configure.sh ALGORITMO_BUSQUEDA FIRST && ./configure.sh PARTICIONES [32,32,32,32,32,32,32,32] && ./configure.sh BLOCK_SIZE 16 && ./configure.sh BLOCK_COUNT 1024 && ./configure.sh RETARDO_ACCESO_BLOQUE 2500
+
+./configure.sh QUANTUM 150
+
+-------------------------------------------------------
+
+> Particiones fijas
+
+./kernel MEM_FIJA_BASE 12
+
+./configure.sh ALGORITMO_PLANIFICACION CMN && ./configure.sh QUANTUM 500 && ./configure.sh TAM_MEMORIA 256 && ./configure.sh RETARDO_RESPUESTA 200 && ./configure.sh ESQUEMA FIJAS && ./configure.sh ALGORITMO_BUSQUEDA FIRST && ./configure.sh PARTICIONES [32,16,64,128,16] && ./configure.sh BLOCK_SIZE 16 && ./configure.sh BLOCK_COUNT 1024 && ./configure.sh RETARDO_ACCESO_BLOQUE 2500
+
+./configure.sh ALGORITMO_BUSQUEDA BEST
+./configure.sh ALGORITMO_BUSQUEDA WORST
+
+-------------------------------------------------------
+
+> Particiones dinámicas
+
+./kernel MEM_DINAMICA_BASE 128
+
+./configure.sh ALGORITMO_PLANIFICACION CMN && ./configure.sh QUANTUM 500 && ./configure.sh TAM_MEMORIA 1024 && ./configure.sh RETARDO_RESPUESTA 200 && ./configure.sh ESQUEMA DINAMICAS && ./configure.sh ALGORITMO_BUSQUEDA BEST && ./configure.sh BLOCK_SIZE 32 && ./configure.sh BLOCK_COUNT 4096 && ./configure.sh RETARDO_ACCESO_BLOQUE 2500
+
+-------------------------------------------------------
+
+> Prueba FS: Fibonacci Sequence
+
+./kernel PRUEBA_FS 8
+
+./configure.sh ALGORITMO_PLANIFICACION CMN && ./configure.sh QUANTUM 25 && ./configure.sh TAM_MEMORIA 2048 && ./configure.sh RETARDO_RESPUESTA 10 && ./configure.sh ESQUEMA DINAMICAS && ./configure.sh ALGORITMO_BUSQUEDA BEST && ./configure.sh BLOCK_SIZE 32 && ./configure.sh BLOCK_COUNT 200 && ./configure.sh RETARDO_ACCESO_BLOQUE 25
+
+-------------------------------------------------------
+
+> Prueba de Stress
+
+./kernel THE_EMPTINESS_MACHINE 16
+
+./configure.sh ALGORITMO_PLANIFICACION CMN && ./configure.sh QUANTUM 125 && ./configure.sh TAM_MEMORIA 8192 && ./configure.sh RETARDO_RESPUESTA 50 && ./configure.sh ESQUEMA DINAMICAS && ./configure.sh ALGORITMO_BUSQUEDA BEST && ./configure.sh BLOCK_SIZE 64 && ./configure.sh BLOCK_COUNT 1024 && ./configure.sh RETARDO_ACCESO_BLOQUE 100
